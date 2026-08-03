@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Selenium 101 Test Suite" parallel="tests" thread-count="2">
+
+    <!-- Execution 1: Windows 10 - Chrome -->
+    <test name="Chrome - Windows 10 Test">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="browserVersion" value="128.0"/>
+        <parameter name="platform" value="Windows 10"/>
+        <classes>
+            <class name="org.example.Selenium101Assignment"/>
+        </classes>
+    </test>
+
+    <!-- Execution 2: macOS Catalina - Safari -->
+    <test name="Safari - macOS Catalina Test">
+        <parameter name="browser" value="Safari"/>
+        <parameter name="browserVersion" value="13.0"/>
+        <parameter name="platform" value="macOS Catalina"/>
+        <classes>
+            <class name="org.example.Selenium101Assignment"/>
+        </classes>
+    </test>
+
+</suite>
