@@ -8,7 +8,7 @@
         <parameter name="browserVersion" value="128.0"/>
         <parameter name="platform" value="Windows 10"/>
         <classes>
-            <class name="org.example.Selenium101Assignment"/>
+            <class name="Selenium101Assignment"/>
         </classes>
     </test>
 
@@ -18,7 +18,7 @@
         <parameter name="browserVersion" value="13.0"/>
         <parameter name="platform" value="macOS Catalina"/>
         <classes>
-            <class name="org.example.Selenium101Assignment"/>
+            <class name="Selenium101Assignment"/>
         </classes>
     </test>
 

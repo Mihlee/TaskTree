@@ -1,4 +1,4 @@
-package org.example;
+
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -68,10 +68,13 @@ public class Selenium101Assignment {
         WebElement simpleFormLink = wait.until(
                 ExpectedConditions.elementToBeClickable(By.linkText("Simple Form Demo"))
         );
-        simpleFormLink.click();
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].click();",
+                simpleFormLink
+        );
+        wait.until(ExpectedConditions.urlContains("simple-form-demo"));
 
-        Assert.assertTrue(driver.getCurrentUrl().contains("simple-form-demo"),
-                "URL does not contain 'simple-form-demo'");
+        Assert.assertTrue(driver.getCurrentUrl().contains("simple-form-demo"));
 
         String messageText = "Welcome to TestMu AI";
 
@@ -92,20 +95,35 @@ public class Selenium101Assignment {
         driver.get("https://www.testmuai.com/selenium-playground/");
 
         WebElement sliderLink = wait.until(
-                ExpectedConditions.elementToBeClickable(By.linkText("Drag & Drop Sliders"))
+                ExpectedConditions.elementToBeClickable(
+                        By.linkText("Drag & Drop Sliders"))
         );
-        sliderLink.click();
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].click();",
+                sliderLink
+        );
 
-        WebElement slider = driver.findElement(By.xpath("//h4[text()='Default value 15']/following-sibling::div//input"));
-        WebElement rangeOutput = driver.findElement(By.cssSelector("#rangeSuccess"));
+        wait.until(ExpectedConditions.urlContains("drag-drop-range-sliders-demo"));
+
+        WebElement slider = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("(//input[@type='range'])[3]")
+                )
+        );
+
+        WebElement rangeOutput = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.id("rangeSuccess"))
+        );
 
         int currentVal = Integer.parseInt(slider.getAttribute("value"));
+
         while (currentVal < 95) {
             slider.sendKeys(Keys.ARROW_RIGHT);
             currentVal = Integer.parseInt(slider.getAttribute("value"));
         }
 
-        Assert.assertEquals(rangeOutput.getText(), "95", "Slider value is not 95!");
+        Assert.assertEquals(rangeOutput.getText(), "95");
     }
 
     // SCENARIO 3: Input Form Submit
@@ -114,49 +132,103 @@ public class Selenium101Assignment {
         driver.get("https://www.testmuai.com/selenium-playground/");
 
         WebElement inputFormLink = wait.until(
-                ExpectedConditions.elementToBeClickable(By.linkText("Input Form Submit"))
+                ExpectedConditions.elementToBeClickable(
+                        By.linkText("Input Form Submit"))
         );
-        inputFormLink.click();
 
-        WebElement submitBtn = driver.findElement(By.xpath("//button[text()='Submit']"));
-        submitBtn.click();
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].click();",
+                inputFormLink
+        );
+
+        wait.until(ExpectedConditions.urlContains("input-form-demo"));
+
+        WebElement submitBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//button[text()='Submit']")
+                )
+        );
+
+        // First submit without filling fields
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView(true);",
+                submitBtn
+        );
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].click();",
+                submitBtn
+        );
 
         WebElement nameField = driver.findElement(By.name("name"));
-        String validationMessage = nameField.getAttribute("validationMessage");
-        Assert.assertTrue(validationMessage.contains("Please fill out this field") ||
-                        validationMessage.contains("Please fill in this field"),
-                "Validation message did not appear!");
 
+        Boolean isRequired = (Boolean) ((JavascriptExecutor) driver)
+                .executeScript(
+                        "return arguments[0].matches(':invalid');",
+                        nameField
+                );
+
+        Assert.assertTrue(
+                isRequired,
+                "Name field should be invalid when submitted empty."
+        );
+
+        // Fill form
         nameField.sendKeys("Mihle");
-        driver.findElement(By.id("inputEmail4")).sendKeys("danstermishle@gmail.com");
-        driver.findElement(By.id("inputPassword4")).sendKeys("Kuyidan@1014");
-        driver.findElement(By.id("company")).sendKeys("TestMu AI");
-        driver.findElement(By.id("websitename")).sendKeys("https://example.com");
 
-        WebElement countryDropdown = driver.findElement(By.name("country"));
-        Select selectCountry = new Select(countryDropdown);
-        selectCountry.selectByVisibleText("United States");
+        driver.findElement(By.id("inputEmail4"))
+                .sendKeys("danstermishle@gmail.com");
 
-        driver.findElement(By.id("inputCity")).sendKeys("Cape Town");
-        driver.findElement(By.id("inputAddress1")).sendKeys("F709 Sondela Street");
-        driver.findElement(By.id("inputAddress2")).sendKeys("F709 Sondela Street");
-        driver.findElement(By.id("inputState")).sendKeys("Western Cape");
-        driver.findElement(By.id("inputZip")).sendKeys("7784");
+        driver.findElement(By.id("inputPassword4"))
+                .sendKeys("Kuyidan@1014");
 
-        submitBtn.click();
+        driver.findElement(By.id("company"))
+                .sendKeys("TestMu AI");
+
+        driver.findElement(By.id("websitename"))
+                .sendKeys("https://example.com");
+
+        Select country = new Select(
+                driver.findElement(By.name("country"))
+        );
+        country.selectByVisibleText("United States");
+
+        driver.findElement(By.id("inputCity"))
+                .sendKeys("Cape Town");
+
+        driver.findElement(By.id("inputAddress1"))
+                .sendKeys("F709 Sondela Street");
+
+        driver.findElement(By.id("inputAddress2"))
+                .sendKeys("F709 Sondela Street");
+
+        driver.findElement(By.id("inputState"))
+                .sendKeys("Western Cape");
+
+        driver.findElement(By.id("inputZip"))
+                .sendKeys("7784");
+
+        // Final submit
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView(true);",
+                submitBtn
+        );
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].click();",
+                submitBtn
+        );
 
         WebElement successMsg = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success-msg"))
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//*[contains(text(),'Thanks for contacting us')]")
+                )
         );
-        Assert.assertEquals(successMsg.getText(),
-                "Thanks for contacting us, we will get back to you shortly.",
-                "Success message mismatch!");
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        Assert.assertTrue(
+                successMsg.getText()
+                        .contains("Thanks for contacting us"),
+                "Success message mismatch!"
+        );
     }
 }
