@@ -1,0 +1,35 @@
+body {
+    margin: 20px;
+    background-color: #FDFDFD;
+    font-family: sans-serif;
+}
+
+form {
+    padding: 20px;
+    width: 33.33%;
+    border-radius: 10px;
+    background-color: #F2F2F2;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+input[type=submit] {
+    background-color: rgb(76, 175, 80);
+    color: white;
+    padding: 14px 20px;
+    border: none;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(69, 160, 73);
+}
