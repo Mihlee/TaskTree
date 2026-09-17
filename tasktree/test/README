@@ -68,3 +68,7 @@ flutter --version
    - [git clone](https://github.com/your-username/tasktree-board.git)(https://github.com/your-username/tasktree-board.git)
 
    - cd tasktree-board
+
+2. **Install dependencies:**
+
+   - flutter pub get
