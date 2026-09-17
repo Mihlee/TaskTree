@@ -1,10 +1,10 @@
-# 🌳 TaskTree Board
+#  TaskTree Board
 
 An interactive, gamified task management desktop and mobile application built with Flutter. **TaskTree Board** bridges daily productivity with visual progress tracking: as you check off your tasks each day, your workspace grows a virtual forest.
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
@@ -20,20 +20,20 @@ An interactive, gamified task management desktop and mobile application built wi
 
 ---
 
-## ✨ Features
+##  Features
 
 - 📅 **Interactive Calendar:** Daily task mapping and date switching using `table_calendar`.
-- 🌲 **Visual Forest Gamification:** Real-time tree growth indicators and streak counter. Completing 100% of a day's tasks triggers a celebration dialog and plants a permanent tree in your forest grid.
-- ⚡ **Full Task CRUD:** Add, edit, check off, and swipe-to-delete tasks with rich attributes (titles, detailed notes, categories, priority levels).
-- 🔍 **Search & Quick Filters:** Live text search across titles/descriptions combined with category chip filtering.
-- 🏷️ **Custom Category Creation:** Dynamically create custom categories on the fly.
-- 💾 **Local Data Persistence:** Automatic JSON serialization saved to local storage via `shared_preferences`.
-- 📦 **Export & Import Backup:** One-click JSON backup export to clipboard and instant restore functionality.
-- 🌓 **Adaptive Theme & Layout:** Toggle between Dark and Light modes with responsive side-by-side desktop layout and mobile stacking.
+-  **Visual Forest Gamification:** Real-time tree growth indicators and streak counter. Completing 100% of a day's tasks triggers a celebration dialog and plants a permanent tree in your forest grid.
+-  **Full Task CRUD:** Add, edit, check off, and swipe-to-delete tasks with rich attributes (titles, detailed notes, categories, priority levels).
+-  **Search & Quick Filters:** Live text search across titles/descriptions combined with category chip filtering.
+-  **Custom Category Creation:** Dynamically create custom categories on the fly.
+-  **Local Data Persistence:** Automatic JSON serialization saved to local storage via `shared_preferences`.
+-  **Export & Import Backup:** One-click JSON backup export to clipboard and instant restore functionality.
+-  **Adaptive Theme & Layout:** Toggle between Dark and Light modes with responsive side-by-side desktop layout and mobile stacking.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 | :--- | :--- |
@@ -46,7 +46,7 @@ An interactive, gamified task management desktop and mobile application built wi
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -86,3 +86,32 @@ flutter --version
  `Run on macOS Desktop`
 
 - flutter run -d macos 
+
+
+---
+
+### How to Use the App
+1. **Managing Tasks**
+
+- Select a day on the calendar to view or manage tasks for that specific date.
+
+- Click + Add Task to open the task creator modal.
+
+- Swipe left on any task card to delete it.
+
+- Tap any task card to edit its title, notes, priority, or category.
+
+2. **Growing Your Forest**
+
+- Each task you check off increases your daily completion percentage bar.
+
+- Completing 100% of tasks for a date completes that day's tree.
+
+- Navigate to the Forest & Stats tab at the bottom to view your total grown trees, overall success percentage, and complete forest log.
+
+3. **Backing Up & Restoring Data**
+- Go to the Forest & Stats tab and tap the Backup & Restore icon in the top app bar.
+
+- Tap Export Backup JSON to copy your complete workspace database string to your clipboard.
+
+- To restore on another device or browser, paste your raw JSON string into the restore input field and tap Restore Data.
