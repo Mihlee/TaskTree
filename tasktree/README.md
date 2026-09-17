@@ -132,3 +132,22 @@ lib/
     ├── task_card.dart         `Dismissible task tile`
     ├── backup_dialog.dart     `JSON export/import modal`
     └── tree_progress.dart     `Dynamic tree growth indicator bar`
+    
+   ## Data Persistence & Backup
+All data is stored key-value style locally on your device:
+
+Tasks Key: tasktree_tasks (Map of date strings to serialized Task JSON lists)
+
+Categories Key: tasktree_categories (List of user-defined string category tags)
+## Troubleshooting
+Issue: Tasks disappear when restarting the app on Web.
+
+Fix: Ensure persistent storage is enabled in your web browser settings. Clearing browser cache/cookies will wipe local shared_preferences. Use the JSON Export tool prior to clearing cache.
+
+Issue: Package import errors after pulling new code.
+
+Fix: Run flutter pub clean && flutter pub get in your root directory.
+
+##  License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
