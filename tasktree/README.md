@@ -115,3 +115,20 @@ flutter --version
 - Tap Export Backup JSON to copy your complete workspace database string to your clipboard.
 
 - To restore on another device or browser, paste your raw JSON string into the restore input field and tap Restore Data.
+
+## 📂 Project Architecture
+
+lib/
+├── main.dart                 `Application entry point &theme configuration`
+├── models/
+│   └── task.dart              `Task model & JSON serialization logic`
+├── services/
+│   └── storage_service.dart   `SharedPreferences manager`
+├── views/
+│   ├── main_navigation.dart   `Tab navigation controller`
+│   ├── task_workspace.dart    `Calendar, search, and task board view`
+│   └── forest_analytics.dart  `Forest grid and productivity statistics`
+└── widgets/
+    ├── task_card.dart         `Dismissible task tile`
+    ├── backup_dialog.dart     `JSON export/import modal`
+    └── tree_progress.dart     `Dynamic tree growth indicator bar`
