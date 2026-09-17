@@ -72,3 +72,17 @@ flutter --version
 2. **Install dependencies:**
 
    - flutter pub get
+
+### How to Run the App:
+
+`Run on default connected device`
+
+- flutter run
+
+ ` Run on Web (Chrome)`
+
+- flutter run -d chrome
+
+ `Run on macOS Desktop`
+
+- flutter run -d macos 
